@@ -19,7 +19,6 @@
 		698F22361C01CEF400BAC32D /* LocationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F22351C01CEF400BAC32D /* LocationServiceTests.m */; };
 		698F22381C01E8AC00BAC32D /* WeatherServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F22371C01E8AC00BAC32D /* WeatherServiceTests.m */; };
 		698F223A1C01EDEF00BAC32D /* WeatherTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F22391C01EDEF00BAC32D /* WeatherTableViewControllerTests.m */; };
-		698F223C1C01FE5000BAC32D /* ServicesManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F223B1C01FE5000BAC32D /* ServicesManagerTests.m */; };
 		69C610021C00CFB900A3CD53 /* WeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C610011C00CFB900A3CD53 /* WeatherTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		698F22351C01CEF400BAC32D /* LocationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationServiceTests.m; sourceTree = "<group>"; };
 		698F22371C01E8AC00BAC32D /* WeatherServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherServiceTests.m; sourceTree = "<group>"; };
 		698F22391C01EDEF00BAC32D /* WeatherTableViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewControllerTests.m; sourceTree = "<group>"; };
-		698F223B1C01FE5000BAC32D /* ServicesManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesManagerTests.m; sourceTree = "<group>"; };
 		69C610001C00CFB900A3CD53 /* WeatherTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewController.h; sourceTree = "<group>"; };
 		69C610011C00CFB900A3CD53 /* WeatherTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,7 +126,6 @@
 			children = (
 				698F22351C01CEF400BAC32D /* LocationServiceTests.m */,
 				698F22371C01E8AC00BAC32D /* WeatherServiceTests.m */,
-				698F223B1C01FE5000BAC32D /* ServicesManagerTests.m */,
 				698F22391C01EDEF00BAC32D /* WeatherTableViewControllerTests.m */,
 				695194A71BFDFD7700C0E8C3 /* Supporting Files */,
 			);
@@ -283,7 +280,6 @@
 				698F22381C01E8AC00BAC32D /* WeatherServiceTests.m in Sources */,
 				698F22361C01CEF400BAC32D /* LocationServiceTests.m in Sources */,
 				698F223A1C01EDEF00BAC32D /* WeatherTableViewControllerTests.m in Sources */,
-				698F223C1C01FE5000BAC32D /* ServicesManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
