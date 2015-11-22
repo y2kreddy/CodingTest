@@ -7,28 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "weather.h"
 
-@class WeatherService;
-@protocol WeatherServiceDelegate <NSObject>
-
--(void)didReceiveDataFromWeatherService:(WeatherService *)serviceObject andTodaysWeatheris:(weather *)todaysweather;
--(void)didReceiveErrorFromWeatherService:(WeatherService *)serviceObject andErroris:(NSError *)connectionError;
-
-
-@optional
--(void)startedServiceCall;
--(void)finishedServiceCall;
-
-@end
 
 @interface WeatherService : NSObject {
     
 }
-@property(nonatomic,assign) id<WeatherServiceDelegate> delegate;
 
--(void)findWeatherForlatitude:(NSString *)latitude andLongitude:(NSString *)longitude;
--(void)findWeatherForlatitude:(NSString *)latitude andLongitude:(NSString *)longitude withCompletionBlockHandler:(void(^)(weather *weatherObj, NSError *error))handler;
+-(void)findWeatherForLocation:(CLLocation *)location withCompletionBlockHandler:(void(^)(weather *weatherObj, NSError *error))handler;
 
 
 @end

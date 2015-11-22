@@ -7,83 +7,46 @@
 //
 
 #import "WeatherService.h"
-#import "Constants.h"
+#import "WeatherServiceConstants.h"
 
 @implementation WeatherService
-@synthesize delegate;
--(void)findWeatherForlatitude:(NSString *)latitude andLongitude:(NSString *)longitude {
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/%@,%@",kProtocol,kWeatherforecasturl,kAPIKey,latitude,longitude]];
-    NSLog(@"URL IS %@",url);
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSOperationQueue *queue = [NSOperationQueue currentQueue];
-    
-    if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(startedServiceCall)]) {
-        [self.delegate startedServiceCall];
 
-    }
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        if (connectionError) {
-            if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(didReceiveErrorFromWeatherService:andErroris:)]) {
-            [self.delegate didReceiveErrorFromWeatherService:self andErroris:connectionError];
-            }
-        }
-        
-        else {
-        
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSDictionary *summaryDictionary = [dict objectForKey:@"currently"];
-        
-        weather *currentweather = [[weather alloc] init];
-        currentweather.summary = [summaryDictionary valueForKey:@"summary"];
-        currentweather.temperature = [[summaryDictionary valueForKey:@"temperature"] stringValue];
-        
-            if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(didReceiveDataFromWeatherService:andTodaysWeatheris:)]) {
+/*
+ 
+ Method : To find the weather for particular location.
+ param : location : the coordinates for which weather has to be found.
+ param : compeletionBlock : Execution returns to this method after completion.
+ 
+ */
 
-        [self.delegate didReceiveDataFromWeatherService:self andTodaysWeatheris:currentweather];
-            }
-        }
-        
-        if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(finishedServiceCall)]) {
+-(void)findWeatherForLocation:(CLLocation *)location withCompletionBlockHandler:(void(^)(weather *weatherObj, NSError *error))handler {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/%f,%f",kProtocol,kWeatherforecasturl,kAPIKey,location.coordinate.latitude,location.coordinate.longitude]];
 
-        [self.delegate finishedServiceCall];
-        }
-    }];
-    
-}
-
--(void)findWeatherForlatitude:(NSString *)latitude andLongitude:(NSString *)longitude withCompletionBlockHandler:(void(^)(weather *weatherObj, NSError *error))handler {
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/%@,%@",kProtocol,kWeatherforecasturl,kAPIKey,latitude,longitude]];
-    
-    NSLog(@"url here is %@",url);
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    NSOperationQueue *queue = [NSOperationQueue currentQueue];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        if (connectionError) {
-           handler(nil,connectionError);
-        }
-        
-        else {
-            
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSDictionary *summaryDictionary = [dict objectForKey:@"currently"];
-            weather *currentweather = [[weather alloc] init];
-            currentweather.summary = [summaryDictionary valueForKey:@"summary"];
-            currentweather.temperature = [[summaryDictionary valueForKey:@"temperature"] stringValue];
-            handler(currentweather,connectionError);
-           
-        }
-        
-      
-    }];
+    NSURLSessionDataTask * sessionDatatTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                       {
+                                           if(error)
+                                           {
+                                              handler(nil,error);
+                                           }
+                                           else
+                                           {
+                                              
+                                                NSDictionary *responseDict  = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                   
+                                                   NSDictionary *summaryDictionary = [responseDict objectForKey:@"currently"];
+                                                   
+                                                   weather *currentweather = [[weather alloc] init];
+                                                   currentweather.summary = [summaryDictionary objectForKey:@"summary"];
+                                                   currentweather.temperature = [[summaryDictionary objectForKey:@"temperature"] stringValue];
+                                                   currentweather.humidity = [[summaryDictionary objectForKey:@"humidity"] stringValue];
+                                                   currentweather.windSpeed = [[summaryDictionary objectForKey:@"windSpeed"] stringValue];
+                                                   handler(currentweather,nil);
+                                            }
+                                       }];
+    [sessionDatatTask resume] ;
 
     
 }

@@ -13,5 +13,7 @@
 }
 @property(nonatomic,strong) NSString *summary;
 @property(nonatomic,strong) NSString *temperature;
+@property(nonatomic,strong) NSString *humidity;
+@property(nonatomic,strong) NSString *windSpeed;
 
 @end

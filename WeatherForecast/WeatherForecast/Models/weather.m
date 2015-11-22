@@ -9,5 +9,5 @@
 #import "weather.h"
 
 @implementation weather
-@synthesize summary,temperature;
+@synthesize summary,temperature,humidity,windSpeed;
 @end

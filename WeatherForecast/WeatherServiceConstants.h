@@ -15,8 +15,5 @@
 
 #define kAPIKey @"82d1f7b08f782d47ab29dcfaa9d01bab"
 
-#define klatitude @"51.5034070"
-
-#define klongitude @"-0.1275920"
 
 #endif
