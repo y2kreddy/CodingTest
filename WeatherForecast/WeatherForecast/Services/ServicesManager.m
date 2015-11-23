@@ -46,7 +46,7 @@ static ServicesManager *sharedInstance = nil;
     
     [self.locationService retrieveCurrentLocationWithCompletionBlock:^(CLLocation *locationObj, NSError *error) {
         if (locationObj) {
-            _currentLocation = locationObj;
+            self.currentLocation = locationObj;
             [self callWeatherService];
 
         }else {
