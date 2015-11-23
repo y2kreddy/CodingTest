@@ -35,6 +35,20 @@
 
 /*
  
+ Method : To stop the location updates.
+ 
+ */
+
+-(void)stopUpdatinglocation {
+    [_locationManager stopUpdatingLocation];
+    self.locationManager = nil;
+    self.Handler = nil;
+    
+}
+
+
+/*
+ 
  Method : To create location manager object if it is not created already.
  
  */
@@ -72,10 +86,6 @@
     
     _Handler(currentLocation,nil);
     
-}
-
--(void)stopUpdatinglocation {
-    [_locationManager stopUpdatingLocation];
 }
 
 /*

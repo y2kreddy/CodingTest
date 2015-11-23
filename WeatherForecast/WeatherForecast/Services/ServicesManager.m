@@ -75,8 +75,10 @@ static ServicesManager *sharedInstance = nil;
 
 -(void)stopWeatherUpdates {
     [self.locationService stopUpdatinglocation];
+    self.currentLocation = nil;
     self.locationService = nil;
     self.weatherService = nil;
+    self.Handler = nil;
 }
 
 /*
