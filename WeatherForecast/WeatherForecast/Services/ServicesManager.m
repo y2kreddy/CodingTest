@@ -27,10 +27,10 @@ static ServicesManager *sharedInstance = nil;
  method : To create singleton object for servicemanager.
  */
 
-+(ServicesManager*)sharedInstance {
-    if(!sharedInstance)
-    {
-        sharedInstance = [[ServicesManager alloc]init];
++(id )sharedInstance {
+    @synchronized(self) {
+        if (sharedInstance == nil)
+            sharedInstance = [[self alloc] init];
     }
     return sharedInstance;
 }
