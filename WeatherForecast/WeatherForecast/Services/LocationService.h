@@ -15,4 +15,5 @@
 }
 @property(nonatomic,readonly) CLLocation *currentLocation;
 -(void)retrieveCurrentLocationWithCompletionBlock :(void(^)(CLLocation *locationObj, NSError *error))handler;
+-(void)stopUpdatinglocation;
 @end

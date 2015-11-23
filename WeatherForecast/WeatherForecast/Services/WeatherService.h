@@ -17,5 +17,4 @@
 
 -(void)findWeatherForLocation:(CLLocation *)location withCompletionBlockHandler:(void(^)(weather *weatherObj, NSError *error))handler;
 
-
 @end

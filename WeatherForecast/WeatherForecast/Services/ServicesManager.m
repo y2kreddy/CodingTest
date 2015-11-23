@@ -70,6 +70,16 @@ static ServicesManager *sharedInstance = nil;
 }
 
 /*
+ mehtod :
+ */
+
+-(void)stopWeatherUpdates {
+    [self.locationService stopUpdatinglocation];
+    self.locationService = nil;
+    self.weatherService = nil;
+}
+
+/*
  method : method to initiate location service object.
  */
 -(LocationService *)locationService {

@@ -17,4 +17,6 @@
 
 -(void)getWeatherForCurrentLocation :(void(^)(weather *weatherObj, NSError *error))handler;
 
+-(void)stopWeatherUpdates;
+
 @end

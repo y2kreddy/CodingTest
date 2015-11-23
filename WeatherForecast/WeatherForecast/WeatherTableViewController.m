@@ -89,6 +89,14 @@
     return self.summaryLabel.text;
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[ServicesManager sharedInstance] stopWeatherUpdates];
+    
+    
+    
+}
 
 
 @end

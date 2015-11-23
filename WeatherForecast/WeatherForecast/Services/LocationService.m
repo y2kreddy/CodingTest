@@ -74,6 +74,10 @@
     
 }
 
+-(void)stopUpdatinglocation {
+    [_locationManager stopUpdatingLocation];
+}
+
 /*
  method : call back method when the user changes the authorization for location updates.
  param : manager, The locationmanager which invoked this method.
